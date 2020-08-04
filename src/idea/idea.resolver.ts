@@ -34,7 +34,6 @@ export class IdeaResolver {
   @Mutation()
   @UseGuards(new AuthGuard())
   async createIdea(
-    @Args('id') id: string,
     @Args() { idea, description }: IdeaDTO,
     @Context('user') user,
   ) {
@@ -51,7 +50,7 @@ export class IdeaResolver {
     @Context('user') user,
   ) {
     const { id: userId } = user;
-    let data: any = {};
+    const data: any = {};
     idea && (data.idea = idea);
     description && (data.description = description);
     return await this.ideaService.update(id, userId, data);
