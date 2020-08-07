@@ -24,11 +24,20 @@ export class IdeaEntity {
   @UpdateDateColumn()
   updated: Date;
 
-  @Column('text')
+  @Column()
   idea: string;
 
-  @Column('text')
+  @Column()
   description: string;
+
+  @Column('enum', {
+    nullable: true,
+    default: '1',
+    enum: ['0', '1'],
+    name: 'status',
+    comment: '购物车状态,0表示完成,1表示进行中',
+  })
+  status: string | null;
 
   @ManyToOne(type => UserEntity, author => author.ideas)
   author: UserEntity;

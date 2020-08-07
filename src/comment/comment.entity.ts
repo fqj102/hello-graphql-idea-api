@@ -17,9 +17,8 @@ export class CommentEntity {
 
   @CreateDateColumn()
   created: Date;
-
-  @Column('text')
-  comment: String;
+  @Column()
+  comment: string;
 
   @ManyToOne(type => UserEntity)
   @JoinTable()

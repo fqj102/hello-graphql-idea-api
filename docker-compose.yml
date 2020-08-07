@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  mysql:
+    container_name: mysql
+    image: mysql/mysql-server:5.7
+    environment:
+      LANG: C.UTF-8
+      MYSQL_DATABASE: round
+      MYSQL_ROOT_PASSWORD: test1234
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./docker/mysql/dump/:/docker-entrypoint-initdb.d/
+      - data:/var/lib/mysql
+      - ./docker/mysql/mycustom.cnf:/etc/mysql/conf.d/custom.cnf
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3307:3306"
+    restart: always
+volumes:
+  data: #mysql path

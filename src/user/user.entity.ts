@@ -22,13 +22,14 @@ export class UserEntity {
   @CreateDateColumn()
   created: Date;
 
-  @Column({
-    type: 'text',
-    unique: true,
+  @Column('varchar', {
+    nullable: false,
+    name: 'username',
+    comment: '이름',
   })
   username: string;
 
-  @Column('text')
+  @Column()
   password: string;
 
   @OneToMany(type => IdeaEntity, idea => idea.author, { cascade: true })
